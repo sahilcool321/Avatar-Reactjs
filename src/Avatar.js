@@ -1,52 +1,61 @@
-import React from 'react';
+import React,{Component} from 'react';
 import Avatarlist from './Avatarlist'
 import './Avatar.css';
 import 'tachyons';
 
-const Avatar = (props) => {
-    const avatarlistarray = [
-      {
-          id:1,
-          name:"Sahil",
-          work:"Web Developer"
-      },
-      {
-          id:2,
-          name:"Rohit",
-          work:"Android Developer"
-      },
-      {
-          id:3,
-          name:"Kartik",
-          work:"SEO"
-      },
-      {
-          id:4,
-          name:"Lakshit",
-          work:"HackerBoi"
-      }
-    ]
-    return (
-        <div>
-            <h1>Welcome to Avatar World</h1>
-            <Avatarlist id={avatarlistarray[0].id} 
-                        name={avatarlistarray[0].name}
-                         work={avatarlistarray[0].work}/>
 
-            <Avatarlist id={avatarlistarray[0].id}
-                        name={avatarlistarray[1].name}
-                        work={avatarlistarray[1].work}/>
+class Avatar extends Component{
+    
+    constructor(){
+        super();
+        this.state = {
+            name : "Avatar World "
+        }
+    }
 
-            <Avatarlist id={avatarlistarray[0].id}
-                        name={avatarlistarray[2].name} 
-                        work={avatarlistarray[2].work}/>
+    namechange(){
+        this.setState({
+            name : "Welcome to Avatar World "
+        })
+    }
 
-            <Avatarlist id={avatarlistarray[0].id} 
-                        name={avatarlistarray[3].name}
-                        work={avatarlistarray[3].work}/>
-            <button>Subscribe</button>
-        </div>
- )
+    render(){
+        const avatarlistarray = [
+            {
+                id:1,
+                name:"Sahil",
+                work:"Web Developer"
+            },
+            {
+                id:2,
+                name:"Rohit",
+                work:"Android Developer"
+            },
+            {
+                id:3,
+                name:"Kartik",
+                work:"SEO"
+            },
+            {
+                id:4,
+                name:"Lakshit",
+                work:"HackerBoi"
+            }
+          ]
+      
+          const arrayavatarcard = avatarlistarray.map((avatarcard,i)=>{
+              return <Avatarlist key={i} id={avatarlistarray[i].id} 
+                      name={avatarlistarray[i].name}
+                      work={avatarlistarray[i].work}/>
+          })      
+        return (
+            <div className="mainpage">
+                <h1 className="tc">{this.state.name}</h1>
+                   {arrayavatarcard}
+                <button onClick={()=> this.namechange()}>Subscribe</button>
+            </div>
+        )
+    }
 }
 
 export default Avatar;
